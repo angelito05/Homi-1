@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión - Habita</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homi.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">
+            <span>⟡</span> Habita
+        </div>
+        <div class="menu">
+            <a href="/registro">Registrarse</a>
+        </div>
+    </div>
+
+    <div class="contenedor">
+
+        <h2>Iniciar Sesión</h2>
+
+        <!-- Mensajes flash -->
+        {% with mensajes = get_flashed_messages(with_categories=true) %}
+            {% if mensajes %}
+                {% for categoria, mensaje in mensajes %}
+                    <div class="flash {{ categoria }}">{{ mensaje }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form action="/index" method="POST">
+
+            <label for="correo_electronico">Correo Electrónico:</label>
+            <input type="email" name="correo_electronico" required>
+
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" name="contrasena" required>
+
+            <button type="submit">Ingresar</button>
+        </form>
+
+        <div class="enlace" style="margin-top: 10px;">
+            <p>¿No tienes cuenta? <a href="/registro">Crear una cuenta</a></p>
+        </div>
+
+    </div>
+
+</body>
+</html>

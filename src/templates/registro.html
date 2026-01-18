@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro - Habita</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homi.css') }}">
+
+    <script>
+        function cambiarRol() {
+            const rol = document.getElementById("rol").value;
+            const camposProveedor = document.querySelectorAll(".proveedor-only");
+
+            if (rol === "cliente") {
+                camposProveedor.forEach(campo => campo.classList.add("hidden"));
+            } else {
+                camposProveedor.forEach(campo => campo.classList.remove("hidden"));
+            }
+        }
+    </script>
+</head>
+
+<body onload="cambiarRol()">
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">
+            <span>⟡</span> Habita
+        </div>
+        <div class="menu">
+            <a href="/">Ingresar</a>
+        </div>
+    </div>
+
+    <div class="contenedor">
+
+        <h2>Crear Cuenta</h2>
+
+        <!-- Mensajes flash -->
+        {% with mensajes = get_flashed_messages(with_categories=true) %}
+            {% if mensajes %}
+                {% for categoria, mensaje in mensajes %}
+                    <div class="flash {{ categoria }}">{{ mensaje }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form action="/registro" method="POST">
+
+            <!-- Rol -->
+            <label for="rol">Rol:</label>
+            <select name="rol" id="rol" onchange="cambiarRol()">
+                <option value="cliente">Cliente</option>
+                <option value="proveedor">Proveedor</option>
+            </select>
+
+            <!-- Nombre -->
+            <label>Nombre:</label>
+            <input type="text" name="nombre" required>
+
+            <!-- Primer apellido -->
+            <label>Primer apellido:</label>
+            <input type="text" name="primer_apellido" required>
+
+            <!-- Segundo apellido (proveedor) -->
+            <div class="proveedor-only hidden">
+                <label>Segundo apellido:</label>
+                <input type="text" name="segundo_apellido">
+            </div>
+
+            <!-- Correo -->
+            <label>Correo electrónico:</label>
+            <input type="email" name="correo_electronico" required>
+
+            <!-- Teléfono (proveedor) -->
+            <div class="proveedor-only hidden">
+                <label>Teléfono:</label>
+                <input type="text" name="telefono">
+            </div>
+
+            <!-- Contraseña -->
+            <label>Contraseña:</label>
+            <input type="password" name="contrasena" required>
+
+            <button type="submit">Registrarse</button>
+        </form>
+
+        <div class="enlace" style="margin-top: 10px;">
+            <p>¿Ya tienes cuenta? <a href="/">Inicia sesión</a></p>
+        </div>
+
+    </div>
+
+</body>
+</html>
