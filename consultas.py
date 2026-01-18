@@ -1,7 +1,7 @@
 # Homi/consultas.py
 from bson.objectid import ObjectId
 
-# --- Consultas de Propiedades ---
+# --- Cons.ultas de Propiedades ---
 
 def obtener_propiedades_destacadas(db, limite=6):
     """

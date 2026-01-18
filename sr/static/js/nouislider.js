@@ -13,6 +13,7 @@
 })(function() {
     "use strict";
 
+    
     var VERSION = "14.6.1";
 
     //region Helper Methods

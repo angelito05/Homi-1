@@ -15,6 +15,7 @@ db = client["HomiDB"]
 usuarios = db["usuarios"]
 mongo = db
 
+
 # Página principal - LOGIN
 @app.route("/")
 def home():
