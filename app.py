@@ -15,7 +15,7 @@ db = client["HomiDB"]
 usuarios = db["usuarios"]
 mongo = db
 
-# Página principal - LOGIiN
+# Página principal - LOGIN
 @app.route("/")
 def home():
     propiedades = consultas.obtener_propiedades_destacadas(mongo.db)
